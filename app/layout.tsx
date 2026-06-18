@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Spendly AI is a personal finance app that lets you track expenses by typing or speaking naturally. AI auto-categorizes transactions, manages multi-currency wallets, and delivers spending analytics — all in one app.",
+    "Track expenses naturally by typing or speaking. Spendly AI auto-categorizes transactions, manages multi-currency wallets, and delivers smart analytics.",
 
   keywords: [
     "expense tracker",
@@ -243,6 +243,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} scroll-smooth`}>
       <head>
         <link rel="canonical" href={BASE_URL} />
+        <meta name="google-site-verification" content="ic2EmuIqR_aHsxv2WEj1JCSeqORxJHDiZDQh3lP-WEA" />
       </head>
       <body className="bg-background text-foreground antialiased min-h-screen">
         {children}
