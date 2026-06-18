@@ -38,7 +38,7 @@ export default function Navbar() {
         {/* Logo */}
         <a href="#" className="flex items-center gap-2.5">
           <div
-            className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0"
+            className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 z-50"
             style={{ background: "#22D3EE", boxShadow: "0 0 16px rgba(34,211,238,0.45)" }}
           >
             <svg width="15" height="15" viewBox="0 0 20 20" fill="none">
@@ -93,7 +93,6 @@ export default function Navbar() {
             background: "rgba(8,8,8,0.95)",
             backdropFilter: "blur(24px)",
             WebkitBackdropFilter: "blur(24px)",
-            borderTop: "1px solid rgba(38,38,38,0.5)",
           }}
         >
           <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-4">

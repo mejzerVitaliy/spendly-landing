@@ -182,11 +182,15 @@
 /* ── Misc ────────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
   background-color: #080808;
   color: #F2F2F2;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 ::selection {
