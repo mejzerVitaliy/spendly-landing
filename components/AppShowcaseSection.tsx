@@ -245,7 +245,7 @@ export default function AppShowcaseSection() {
           </div>
 
           {/* Right: Phone mockup */}
-          <div className="order-1 lg:order-2 flex-shrink-0 animate-fade-up" style={{ animationDelay: "0.1s" }}>
+          <div className="order-1 lg:order-2 shrink-0 animate-fade-up" style={{ animationDelay: "0.1s" }}>
             <div className="relative" style={{ width: 320, height: 680 }}>
               {/* Glow behind phone */}
               <div
