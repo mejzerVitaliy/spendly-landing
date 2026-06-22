@@ -96,7 +96,10 @@ export const metadata: Metadata = {
   },
 
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
     apple: "/apple-touch-icon.png",
   },
 
@@ -186,10 +189,42 @@ const jsonLd = [
       },
       {
         "@type": "Question",
-        name: "How does Spendly AI categorize expenses automatically?",
+        name: "Where is my data stored in Spendly AI?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Spendly AI uses a built-in AI engine that interprets natural language input — both text and voice. When you type or say a transaction like 'grocery store forty dollars', the AI extracts the amount, infers the merchant, and assigns the appropriate category (Food & Dining, Transport, etc.) with over 97% accuracy.",
+          text: "Your financial data is stored on servers in the European Union, encrypted in transit using TLS 1.3. Passwords are stored as bcrypt hashes. Authentication tokens on your device are protected by iOS Keychain and Android Keystore.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can tax authorities or third parties access my Spendly AI transactions?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No. Your financial data is private and accessible only to you. Spendly AI does not share data with any government agency, advertiser, or third party unless legally compelled by a valid court order.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What AI model powers Spendly AI?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Spendly AI uses OpenAI's GPT models for text and voice transaction parsing and for the AI Coach deep analysis feature. Voice audio is not stored by Spendly after processing.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Do I need an account to use Spendly AI?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No. You can use Spendly AI in full guest mode — no email or password required. Your data is stored locally. You can create an account later to sync across devices and enable cloud backup.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How is Spendly AI different from a bank app or Revolut?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Bank apps and Revolut only track money inside their own system. Spendly AI works with all your money — cash, any bank's cards, foreign accounts — giving you a complete financial picture in one place. You control the data, not the bank.",
         },
       },
       {
@@ -197,7 +232,7 @@ const jsonLd = [
         name: "Does Spendly AI support multiple currencies?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. Spendly AI supports 100+ currencies. You can create wallets in different currencies, set a main display currency, and the app automatically converts balances using live exchange rates. Changing the main currency recalculates all wallet balances and analytics instantly.",
+          text: "Yes. Spendly AI supports 100+ currencies with live exchange rates. Set a main display currency and every wallet balance is automatically converted and shown in your preferred currency.",
         },
       },
       {
@@ -205,31 +240,7 @@ const jsonLd = [
         name: "Is Spendly AI free?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Spendly AI is free to download and use. The app is currently in development and will be available on the App Store and Google Play. You can join the waitlist at spendly-ai.com to be notified at launch.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Can I use voice input to add transactions in Spendly AI?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. Spendly AI has a Voice AI mode where you can speak a transaction naturally, such as 'paid rent five hundred euros'. The app processes the speech, extracts the transaction details, and adds it to your wallet automatically.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What analytics does Spendly AI provide?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Spendly AI provides cash flow trend charts, income vs expense ratio breakdowns, spending by category, monthly comparisons, and wallet balance summaries. Data can be filtered by week, month, or year.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "When will Spendly AI launch?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Spendly AI is currently in active development. You can join the waitlist at spendly-ai.com and you will be notified by email as soon as the app is available on the App Store and Google Play.",
+          text: "Yes, Spendly AI is free to download and use. The app is currently in development and will be available on the App Store and Google Play. Join the waitlist at spendly-ai.com to be notified at launch.",
         },
       },
     ],

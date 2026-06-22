@@ -3,10 +3,11 @@
 import { useState, useEffect } from "react";
 
 const navLinks = [
-  { label: "Features",        href: "#features" },
-  { label: "See in action",   href: "#app-showcase" },
-  { label: "How it works",    href: "#how-it-works" },
-  { label: "Contact",         href: "#contact" },
+  { label: "Features",      href: "#features" },
+  { label: "See in action", href: "#app-showcase" },
+  { label: "How it works",  href: "#how-it-works" },
+  { label: "FAQ",           href: "#faq" },
+  { label: "Contact",       href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -37,15 +38,14 @@ export default function Navbar() {
       <div className="relative max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2.5">
-          <div
-            className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 z-50"
-            style={{ background: "#22D3EE", boxShadow: "0 0 16px rgba(34,211,238,0.45)" }}
-          >
-            <svg width="15" height="15" viewBox="0 0 20 20" fill="none">
-              <path d="M10 2L3 6.5V13.5L10 18L17 13.5V6.5L10 2Z" stroke="#080808" strokeWidth="2" strokeLinejoin="round" />
-              <path d="M10 2V18M3 6.5L17 13.5M17 6.5L3 13.5" stroke="#080808" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-          </div>
+          <img
+            src="/logo.jpg"
+            alt="Spendly AI"
+            width={32}
+            height={32}
+            className="rounded-xl shrink-0"
+            style={{ boxShadow: "0 0 12px rgba(34,211,238,0.3)" }}
+          />
           <span className="font-semibold text-foreground text-base tracking-tight">Spendly AI</span>
         </a>
 
