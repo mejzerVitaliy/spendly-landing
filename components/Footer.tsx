@@ -7,19 +7,19 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
-          <div className="flex items-center gap-2.5">
-            <div
-              className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
-              style={{ background: "#22D3EE", boxShadow: "0 0 10px rgba(34,211,238,0.35)" }}
-            >
-              <svg width="13" height="13" viewBox="0 0 20 20" fill="none">
-                <path d="M10 2L3 6.5V13.5L10 18L17 13.5V6.5L10 2Z" stroke="#080808" strokeWidth="2" strokeLinejoin="round" />
-                <path d="M10 2V18M3 6.5L17 13.5M17 6.5L3 13.5" stroke="#080808" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
+          <div className="flex items-center gap-3">
+            <img
+              src="/logo.jpg"
+              alt="Spendly AI"
+              width={40}
+              height={40}
+              className="rounded-xl shrink-0"
+              style={{ boxShadow: "0 0 14px rgba(34,211,238,0.3)" }}
+            />
+            <div>
+              <p className="text-sm font-semibold leading-tight" style={{ color: "#F2F2F2" }}>Spendly AI</p>
+              <p className="text-xs" style={{ color: "#737373" }}>Smart Expense Tracking</p>
             </div>
-            <span className="text-sm font-semibold" style={{ color: "#F2F2F2" }}>Spendly AI</span>
-            <span className="text-xs" style={{ color: "#737373" }}>—</span>
-            <span className="text-xs" style={{ color: "#737373" }}>Smart Expense Tracking</span>
           </div>
 
           {/* Links */}

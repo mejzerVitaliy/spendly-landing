@@ -41,10 +41,10 @@ export default function Navbar() {
           <img
             src="/logo.jpg"
             alt="Spendly AI"
-            width={32}
-            height={32}
+            width={40}
+            height={40}
             className="rounded-xl shrink-0"
-            style={{ boxShadow: "0 0 12px rgba(34,211,238,0.3)" }}
+            style={{ boxShadow: "0 0 14px rgba(34,211,238,0.35)" }}
           />
           <span className="font-semibold text-foreground text-base tracking-tight">Spendly AI</span>
         </a>
