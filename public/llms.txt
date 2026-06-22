@@ -1,21 +1,81 @@
 # Spendly AI
 
-> AI-powered personal finance and expense tracking mobile app for iOS and Android.
+> Free AI-powered personal finance and expense tracking mobile app for iOS and Android.
 
-Spendly AI is a personal finance application currently in active development, launching soon on the App Store and Google Play. It uses artificial intelligence to make expense tracking effortless — you can add transactions by typing or speaking in natural language, and the AI handles categorization, organization, and analytics automatically.
+Spendly AI is a personal finance application currently in active development, launching soon on the App Store and Google Play. It uses artificial intelligence to make expense tracking effortless — you add transactions by typing or speaking in natural language, and the AI handles categorization, organization, and analytics automatically.
+
+## Problem it solves
+
+Most people don't track their expenses because it's too tedious. Spreadsheets require discipline. Bank apps only see their own transactions. Spendly AI removes the friction: just say "coffee 4.50" or "paid rent 500 eur" and the AI does the rest. Works with cash, any bank's cards, and foreign accounts — all in one place.
 
 ## Core Features
 
-- **Text AI**: Type expenses naturally — "coffee 4.50" or "paid rent 500 eur" — and the AI parses amount, merchant, and category instantly
-- **Voice AI**: Speak transactions aloud; the app processes speech and creates the entry without manual input
-- **Manual Entry**: Traditional form-based input also available
-- **Auto-Categorization**: AI assigns categories (Food, Transport, Utilities, etc.) with 97%+ accuracy
-- **Multiple Wallets**: Create cash, savings, or custom wallets; set a default wallet for quick entry
-- **Multi-Currency Support**: 100+ currencies supported; set a main currency and all balances are converted using live exchange rates
-- **Spending Analytics**: Cash flow trend charts, income vs expense ratio, spending breakdown by category
-- **Budget Tracking**: Set monthly budgets per category with real-time progress bars
-- **Transaction Search**: Instantly search across all transactions
-- **Categories**: Customizable expense and income categories; pin up to 10 favorites for quick access
+### Transaction Input
+- **Text AI**: Type expenses in natural language — "coffee 4.50" or "paid rent 500 eur" — AI parses amount, merchant, and category instantly
+- **Voice AI**: Speak transactions aloud; AI transcribes and creates the entry without manual input
+- **Manual entry**: Traditional form with amount, date, wallet, currency, category, description
+- **Auto-categorization**: AI assigns categories (Food, Transport, Utilities, Gifts, etc.) automatically
+- **Recurring transactions**: Mark any transaction as repeating — daily, weekly, every 2 weeks, monthly, every 6 months, or yearly
+- **Wallet-to-wallet transfers**: Transfer money between your own wallets
+- **Long-press context menu**: Edit, duplicate, or delete any transaction with haptic feedback
+
+### Home Screen
+- Income / expense balance summary for the selected period (week, month, year)
+- Filterable, searchable transaction list
+- Period navigation with prev/next arrows
+- Pull-to-refresh
+
+### Wallets
+- Multiple wallets: Cash, Debit Card, Credit Card, Savings, or Custom type
+- Total balance aggregated across all wallets in main currency
+- Set default wallet for quick entry
+- Archive and restore wallets
+
+### Multi-Currency
+- 100+ currencies supported with live exchange rates
+- Set a main display currency — all balances auto-convert
+- Change main currency and every balance recalculates instantly
+- Pin up to 5 favorite currencies for fast access
+
+### Analytics
+- Cash flow trend charts (line/bar)
+- Income vs expense ratio breakdown
+- Spending by category (switchable between expense and income)
+- Filter by week, month, or year
+
+### AI Insights
+- **Rule-based insight cards**: Positive/negative cash flow, great savings rate, high spending concentration, peak spending day, active tracking day count
+- **AI Coach**: On-demand deep analysis — strong net income, unusual expense patterns, savings opportunities, personalized recommendations powered by OpenAI GPT
+- Monthly AI usage limit with progress indicator
+
+### Categories
+- Customizable expense and income categories
+- Pin up to 10 favorites per type for quick access during transaction entry
+- Search categories
+
+### Onboarding
+- Animated product slides showcasing key features
+- Guest mode — full access without creating an account
+- Setup wizard — select favorite categories, main currency, wallet opening balance
+- Interactive coach tour for new users
+
+### Settings
+- Account management: email, password, logout, account deletion
+- Language: English, Russian
+- Push notifications: daily check-in, weekly summary, monthly recap, spending streak
+- AI usage limits view
+- Privacy Policy and Terms of Use links
+
+## How it compares
+
+| | Spendly AI | Bank app / Revolut | Spreadsheet |
+|---|---|---|---|
+| Works with all banks | ✅ | ❌ (own system only) | ✅ |
+| AI input (voice/text) | ✅ | ❌ | ❌ |
+| Guest mode | ✅ | ❌ | — |
+| AI Coach insights | ✅ | ❌ | ❌ |
+| Multi-currency | ✅ | ✅ | Manual |
+| Time to log one expense | ~3 seconds | N/A | ~30 seconds |
 
 ## Status
 
@@ -23,10 +83,11 @@ Spendly AI is currently in active development. It is not yet available for downl
 
 ## Technical Details
 
-- Platform: iOS and Android (React Native / Expo)
-- AI: On-device and cloud AI for transaction parsing
-- Data: User financial data is encrypted at rest (AES-256) and in transit (TLS 1.3)
-- Storage: Data stored on servers in the European Union
+- Platform: iOS and Android (React Native / Expo SDK 52)
+- AI: OpenAI GPT for transaction parsing (text and voice) and AI Coach analysis
+- Data: Encrypted in transit (TLS 1.3), passwords stored as bcrypt hashes
+- Storage: EU-based servers; JWT tokens stored in iOS Keychain / Android Keystore
+- Guest mode: local storage only, no personal data required
 - Pricing: Free to download and use
 
 ## Contact
