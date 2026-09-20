@@ -15,7 +15,11 @@ interface DashboardData {
   topEvents: { event: string; count: number }[];
   dauSeries: { date: string; dau: number }[];
   eventSeries: { date: string; count: number }[];
-  onboarding: RateStat & { started30d: number; completed30d: number };
+  onboarding: {
+    started30d: number;
+    completed30d: number;
+    completionRatePct: number | null;
+  };
   day1Activation: RateStat & { totalSignups: number; activated: number };
   retention: {
     d1: RateStat & { eligible: number; returned: number };
@@ -226,7 +230,7 @@ export default async function AnalyticsDashboardPage({ searchParams }: PageProps
                   label="Onboarding completion"
                   numerator={data.onboarding.completed30d}
                   denominator={data.onboarding.started30d}
-                  ratePct={data.onboarding.ratePct}
+                  ratePct={data.onboarding.completionRatePct}
                   numeratorLabel="completed / started (30d)"
                 />
                 <RateCard
