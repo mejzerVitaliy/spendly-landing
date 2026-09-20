@@ -3,6 +3,10 @@ import { redirect } from 'next/navigation';
 const API_URL = process.env.API_URL ?? 'http://localhost:5000/api';
 const ANALYTICS_ADMIN_SECRET = process.env.ANALYTICS_ADMIN_SECRET ?? '';
 
+interface RateStat {
+  ratePct: number | null;
+}
+
 interface DashboardData {
   dau: number;
   mau: number;
@@ -11,6 +15,13 @@ interface DashboardData {
   topEvents: { event: string; count: number }[];
   dauSeries: { date: string; dau: number }[];
   eventSeries: { date: string; count: number }[];
+  onboarding: RateStat & { started30d: number; completed30d: number };
+  day1Activation: RateStat & { totalSignups: number; activated: number };
+  retention: {
+    d1: RateStat & { eligible: number; returned: number };
+    d7: RateStat & { eligible: number; returned: number };
+  };
+  aiAdoption: RateStat & { totalUsers: number; adopters: number };
 }
 
 async function fetchDashboard(): Promise<DashboardData | null> {
@@ -127,6 +138,35 @@ function MetricCard({
   );
 }
 
+// --- Rate card (funnel/retention/adoption %, with the underlying fraction) ---
+function RateCard({
+  label,
+  numerator,
+  denominator,
+  ratePct,
+  numeratorLabel,
+}: {
+  label: string;
+  numerator: number;
+  denominator: number;
+  ratePct: number | null;
+  numeratorLabel: string;
+}) {
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/5 p-5 flex flex-col gap-1">
+      <span className="text-xs font-semibold uppercase tracking-widest text-gray-400">{label}</span>
+      <span className="text-4xl font-bold text-white">
+        {ratePct === null ? '—' : `${ratePct}%`}
+      </span>
+      <span className="text-xs text-gray-500">
+        {ratePct === null
+          ? 'Not enough data yet'
+          : `${numerator} / ${denominator} ${numeratorLabel}`}
+      </span>
+    </div>
+  );
+}
+
 // --- Date label row ---
 function DateLabels({ series }: { series: { date: string }[] }) {
   if (series.length === 0) return null;
@@ -176,6 +216,48 @@ export default async function AnalyticsDashboardPage({ searchParams }: PageProps
               <MetricCard label="MAU" value={data.mau} sub="unique users (30d)" />
               <MetricCard label="Events today" value={data.totalEventsToday} />
               <MetricCard label="Events (7d)" value={data.totalEvents7d} />
+            </div>
+
+            {/* Activation & retention row */}
+            <div>
+              <h2 className="text-sm font-semibold text-gray-300 mb-4">Activation &amp; retention</h2>
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <RateCard
+                  label="Onboarding completion"
+                  numerator={data.onboarding.completed30d}
+                  denominator={data.onboarding.started30d}
+                  ratePct={data.onboarding.ratePct}
+                  numeratorLabel="completed / started (30d)"
+                />
+                <RateCard
+                  label="Day-1 activation"
+                  numerator={data.day1Activation.activated}
+                  denominator={data.day1Activation.totalSignups}
+                  ratePct={data.day1Activation.ratePct}
+                  numeratorLabel="activated / signups"
+                />
+                <RateCard
+                  label="D1 retention"
+                  numerator={data.retention.d1.returned}
+                  denominator={data.retention.d1.eligible}
+                  ratePct={data.retention.d1.ratePct}
+                  numeratorLabel="returned / eligible"
+                />
+                <RateCard
+                  label="D7 retention"
+                  numerator={data.retention.d7.returned}
+                  denominator={data.retention.d7.eligible}
+                  ratePct={data.retention.d7.ratePct}
+                  numeratorLabel="returned / eligible"
+                />
+                <RateCard
+                  label="AI adoption"
+                  numerator={data.aiAdoption.adopters}
+                  denominator={data.aiAdoption.totalUsers}
+                  ratePct={data.aiAdoption.ratePct}
+                  numeratorLabel="adopters / users"
+                />
+              </div>
             </div>
 
             {/* Charts row */}
