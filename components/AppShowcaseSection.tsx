@@ -3,6 +3,8 @@
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 
+// Same 6 screens, same order, as the actual App Store listing —
+// keep this in sync with spendly-mobile/store-assets/screenshots/ios-6.9.
 const screens = [
   {
     id: "home",
@@ -20,26 +22,12 @@ const screens = [
     ),
   },
   {
-    id: "quick-add",
-    src: "/screenshots/screen-add.jpg",
-    title: "Three ways to log an expense",
+    id: "ai-text",
+    src: "/screenshots/screen-ai-text.jpg",
+    title: "Type it, AI adds it",
     description:
-      "Tap the plus button and pick your mode: Manual for a full form, Text AI to type it naturally, or Voice AI to just speak it. Whichever is fastest in the moment.",
-    tag: "Quick Add",
-    color: "#2DD4BF",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-        <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    id: "create",
-    src: "/screenshots/screen-create.jpg",
-    title: "Log a transaction in seconds",
-    description:
-      "Choose expense, income, or transfer. Pick a wallet, currency, category, and optionally set it to repeat. Or skip the form — just type or speak with AI.",
-    tag: "Add",
+      "Type a transaction naturally — \"salary 2000, bonus 500 eur\" — and AI parses it into ready-to-confirm transactions in seconds. Review, tweak if needed, and add.",
+    tag: "Text AI",
     color: "#22C55E",
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
@@ -48,31 +36,18 @@ const screens = [
     ),
   },
   {
-    id: "insights",
-    src: "/screenshots/screen-insights.jpg",
-    title: "Your financial snapshot",
+    id: "voice-ai",
+    src: "/screenshots/screen-voice-ai.jpg",
+    title: "Or just say it",
     description:
-      "Automatic insight cards: cash flow status, savings rate, top expense category, peak spending day, and how many days you actively tracked. Updated every period.",
-    tag: "Insights",
-    color: "#818CF8",
+      "Tap the mic and describe your transaction out loud. Voice AI transcribes and parses it exactly like text input does — hands-free logging in seconds.",
+    tag: "Voice AI",
+    color: "#F97316",
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    id: "insights-ai",
-    src: "/screenshots/screen-insights-ai.jpg",
-    title: "AI Coach — deep analysis on demand",
-    description:
-      "Tap AI Coach for a personalized deep-dive: net income analysis, unusual spending patterns, savings opportunities. Powered by GPT, updated each session.",
-    tag: "AI Coach",
-    color: "#C084FC",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.8" />
-        <path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+        <path d="M19 10v2a7 7 0 0 1-14 0v-2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+        <path d="M12 19v4M8 23h8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
       </svg>
     ),
   },
@@ -91,6 +66,21 @@ const screens = [
     ),
   },
   {
+    id: "insights-ai",
+    src: "/screenshots/screen-insights-ai.jpg",
+    title: "Your financial snapshot — powered by AI",
+    description:
+      "Automatic insight cards like cash flow status and savings rate, plus AI Coach's deeper read: income trends, spending patterns, and where you're doing well. Updated every period.",
+    tag: "Insights & AI Coach",
+    color: "#C084FC",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.8" />
+        <path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
     id: "wallets",
     src: "/screenshots/screen-wallets.jpg",
     title: "Multiple wallets, one clear total",
@@ -102,35 +92,6 @@ const screens = [
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
         <path d="M21 8V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
         <path d="M17 12a2 2 0 0 0 0 4h4v-4h-4z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    id: "categories",
-    src: "/screenshots/screen-categories.jpg",
-    title: "Categories built for speed",
-    description:
-      "Pin up to 10 favorite categories for instant access. Separate lists for expenses and income. AI picks the right one automatically when you use text or voice input.",
-    tag: "Categories",
-    color: "#F97316",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-        <path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      </svg>
-    ),
-  },
-  {
-    id: "currencies",
-    src: "/screenshots/screen-currencies.jpg",
-    title: "Pin your favorite currencies",
-    description:
-      "Search 100+ currencies, set your main display currency, and star up to 5 favorites for instant wallet creation. Switching your main currency recalculates every balance with live exchange rates.",
-    tag: "Currencies",
-    color: "#E879F9",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-        <circle cx="9" cy="12" r="6.5" stroke="currentColor" strokeWidth="1.8" />
-        <circle cx="15" cy="12" r="6.5" stroke="currentColor" strokeWidth="1.8" />
       </svg>
     ),
   },
