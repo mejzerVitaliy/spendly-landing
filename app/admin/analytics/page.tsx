@@ -28,9 +28,12 @@ interface DashboardData {
   aiAdoption: RateStat & { totalUsers: number; adopters: number };
 }
 
-async function fetchDashboard(): Promise<DashboardData | null> {
+async function fetchDashboard(platform?: string): Promise<DashboardData | null> {
   try {
-    const res = await fetch(`${API_URL}/analytics/dashboard`, {
+    const url = new URL(`${API_URL}/analytics/dashboard`);
+    if (platform) url.searchParams.set('platform', platform);
+
+    const res = await fetch(url, {
       headers: { 'x-analytics-secret': ANALYTICS_ADMIN_SECRET },
       next: { revalidate: 60 },
     });
@@ -185,8 +188,47 @@ function DateLabels({ series }: { series: { date: string }[] }) {
   );
 }
 
+const PLATFORM_TABS: { label: string; value?: string }[] = [
+  { label: 'All', value: undefined },
+  { label: 'iOS', value: 'ios' },
+  { label: 'Android', value: 'android' },
+];
+
+// --- Platform tabs ---
+function PlatformTabs({
+  active,
+  accessKey,
+}: {
+  active?: string;
+  accessKey: string;
+}) {
+  return (
+    <div className="flex gap-2">
+      {PLATFORM_TABS.map((tab) => {
+        const isActive = active === tab.value || (!active && !tab.value);
+        const href = tab.value
+          ? `?key=${accessKey}&platform=${tab.value}`
+          : `?key=${accessKey}`;
+        return (
+          <a
+            key={tab.label}
+            href={href}
+            className={`px-4 py-2 rounded-xl text-sm font-semibold transition-colors ${
+              isActive
+                ? 'bg-cyan-400 text-black'
+                : 'bg-white/5 text-gray-400 hover:bg-white/10'
+            }`}
+          >
+            {tab.label}
+          </a>
+        );
+      })}
+    </div>
+  );
+}
+
 interface PageProps {
-  searchParams: Promise<{ key?: string }>;
+  searchParams: Promise<{ key?: string; platform?: string }>;
 }
 
 export default async function AnalyticsDashboardPage({ searchParams }: PageProps) {
@@ -196,15 +238,22 @@ export default async function AnalyticsDashboardPage({ searchParams }: PageProps
     redirect('/');
   }
 
-  const data = await fetchDashboard();
+  const platform = params.platform === 'ios' || params.platform === 'android'
+    ? params.platform
+    : undefined;
+
+  const data = await fetchDashboard(platform);
 
   return (
     <div className="min-h-screen bg-[#0a0a0f] text-white p-6 md:p-10">
       <div className="max-w-5xl mx-auto space-y-8">
         {/* Header */}
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">Spendly Analytics</h1>
-          <p className="text-sm text-gray-500 mt-1">Internal dashboard · auto-refreshes every 60s</p>
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <h1 className="text-2xl font-bold tracking-tight">Spendly Analytics</h1>
+            <p className="text-sm text-gray-500 mt-1">Internal dashboard · auto-refreshes every 60s</p>
+          </div>
+          <PlatformTabs active={platform} accessKey={params.key} />
         </div>
 
         {!data ? (
