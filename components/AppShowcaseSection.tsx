@@ -20,6 +20,20 @@ const screens = [
     ),
   },
   {
+    id: "quick-add",
+    src: "/screenshots/screen-add.jpg",
+    title: "Three ways to log an expense",
+    description:
+      "Tap the plus button and pick your mode: Manual for a full form, Text AI to type it naturally, or Voice AI to just speak it. Whichever is fastest in the moment.",
+    tag: "Quick Add",
+    color: "#2DD4BF",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
     id: "create",
     src: "/screenshots/screen-create.jpg",
     title: "Log a transaction in seconds",
@@ -102,6 +116,21 @@ const screens = [
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
         <path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    id: "currencies",
+    src: "/screenshots/screen-currencies.jpg",
+    title: "Pin your favorite currencies",
+    description:
+      "Search 100+ currencies, set your main display currency, and star up to 5 favorites for instant wallet creation. Switching your main currency recalculates every balance with live exchange rates.",
+    tag: "Currencies",
+    color: "#E879F9",
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <circle cx="9" cy="12" r="6.5" stroke="currentColor" strokeWidth="1.8" />
+        <circle cx="15" cy="12" r="6.5" stroke="currentColor" strokeWidth="1.8" />
       </svg>
     ),
   },

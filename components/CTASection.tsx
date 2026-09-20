@@ -1,42 +1,7 @@
-"use client";
-
 import { Apple, Play } from "lucide-react";
-import { useState, type FormEvent } from "react";
-import { WEB3FORMS_KEY } from "@/lib/config";
-
-// Update when app is published
-const APP_STORE_URL = "https://apps.apple.com";
-const GOOGLE_PLAY_URL = "https://play.google.com";
-
-type Status = "idle" | "loading" | "success" | "error";
+import { APP_STORE_URL, GOOGLE_PLAY_URL } from "@/lib/config";
 
 export default function CTASection() {
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<Status>("idle");
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!email) return;
-    setStatus("loading");
-    try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_KEY,
-          subject: "[Spendly AI] Waitlist signup",
-          email,
-          message: "New waitlist signup",
-        }),
-      });
-      const data = await res.json();
-      setStatus(data.success ? "success" : "error");
-      if (data.success) setEmail("");
-    } catch {
-      setStatus("error");
-    }
-  };
-
   return (
     <section className="py-32 relative overflow-hidden">
       {/* Decorative top border */}
@@ -58,10 +23,10 @@ export default function CTASection() {
         <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-8">
           <span
             className="flex h-2 w-2 rounded-full animate-pulse"
-            style={{ background: "#22D3EE", boxShadow: "0 0 6px #22D3EE" }}
+            style={{ background: "#22C55E", boxShadow: "0 0 6px #22C55E" }}
           />
           <span className="text-[11px] tracking-[0.12em] uppercase font-medium" style={{ color: "#737373" }}>
-            Coming soon
+            Live on the App Store
           </span>
         </div>
 
@@ -69,67 +34,39 @@ export default function CTASection() {
           className="font-bold tracking-tight mb-6 leading-[1.05]"
           style={{ fontSize: "clamp(36px, 5vw, 64px)", color: "#F2F2F2" }}
         >
-          Be the first to{" "}
-          <span className="gradient-text">take control</span>
+          Ready to{" "}
+          <span className="gradient-text">take control</span>?
         </h2>
 
         <p className="text-lg leading-relaxed mb-10 max-w-xl mx-auto" style={{ color: "#737373" }}>
-          Spendly AI is in active development. Leave your email — we&apos;ll notify
-          you the moment it&apos;s available on the App Store and Google Play.
+          Spendly AI is free to download, right now, on the App Store. No account
+          required — just install it and log your first expense in seconds.
         </p>
 
-        {/* Waitlist form */}
-        {status === "success" ? (
-          <div
-            className="inline-flex items-center gap-3 rounded-2xl px-6 py-4 mb-10"
-            style={{ background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.2)" }}
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M20 6L9 17l-5-5" stroke="#22C55E" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            <span className="text-sm font-medium" style={{ color: "#22C55E" }}>
-              You&apos;re on the list! We&apos;ll let you know when we launch.
-            </span>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-10">
-            <input
-              type="email"
-              required
-              placeholder="your@email.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 px-5 py-3.5 rounded-full text-sm outline-none transition-all"
-              style={{
-                background: "rgba(255,255,255,0.05)",
-                border: "1px solid rgba(38,38,38,0.8)",
-                color: "#F2F2F2",
-              }}
-              onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(34,211,238,0.4)")}
-              onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(38,38,38,0.8)")}
-            />
-            <button
-              type="submit"
-              disabled={status === "loading"}
-              className="btn-primary px-7 py-3.5 text-sm shrink-0"
-            >
-              {status === "loading" ? "Sending…" : "Notify Me"}
-            </button>
-          </form>
-        )}
+        {/* Primary CTA — real App Store link */}
+        <a
+          href={APP_STORE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-primary inline-flex items-center gap-3 px-8 py-4 text-base mb-6"
+        >
+          <Apple size={20} color="#080808" />
+          Download on the App Store
+        </a>
 
-        {status === "error" && (
-          <p className="text-xs mb-6" style={{ color: "#EF4444" }}>
-            Something went wrong. Email us directly at{" "}
-            <a href="mailto:support@spendly-ai.com" style={{ color: "#22D3EE" }}>support@spendly-ai.com</a>
-          </p>
-        )}
+        <p className="text-xs mb-8" style={{ color: "#4a4a4a" }}>
+          Free to download · No account required
+        </p>
 
-        {/* Store badges — coming soon */}
-        <p className="text-xs mb-4 uppercase tracking-widest" style={{ color: "#4a4a4a" }}>Coming soon to</p>
-        <div className="flex items-center justify-center gap-4 flex-wrap opacity-50">
-          <StoreBadge href={APP_STORE_URL} icon={<Apple size={20} color="#F2F2F2" />} store="App Store" sub="Download on the" />
-          <StoreBadge href={GOOGLE_PLAY_URL} icon={<Play size={20} color="#F2F2F2" />} store="Google Play" sub="Get it on" />
+        {/* Google Play — Android build not out yet */}
+        <div className="flex items-center justify-center">
+          <StoreBadge
+            href={GOOGLE_PLAY_URL}
+            icon={<Play size={18} color="#737373" />}
+            store="Coming soon to Android"
+            sub="Get it on"
+            disabled
+          />
         </div>
       </div>
     </section>
@@ -141,24 +78,27 @@ function StoreBadge({
   icon,
   store,
   sub,
+  disabled,
 }: {
   href: string;
   icon: React.ReactNode;
   store: string;
   sub: string;
+  disabled?: boolean;
 }) {
   return (
     <a
-      href={href}
+      href={disabled ? undefined : href}
       target="_blank"
       rel="noopener noreferrer"
       className="btn-ghost flex items-center gap-3 px-6 py-3"
-      style={{ minWidth: 170, pointerEvents: "none" }}
+      style={disabled ? { minWidth: 170, pointerEvents: "none", opacity: 0.5 } : { minWidth: 170 }}
+      aria-disabled={disabled}
     >
       {icon}
       <div className="text-left">
         <p className="text-[9px] leading-none mb-0.5" style={{ color: "#737373" }}>{sub}</p>
-        <p className="text-sm font-semibold" style={{ color: "#F2F2F2" }}>{store}</p>
+        <p className="text-sm font-semibold" style={{ color: disabled ? "#737373" : "#F2F2F2" }}>{store}</p>
       </div>
     </a>
   );

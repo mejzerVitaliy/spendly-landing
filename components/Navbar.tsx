@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { APP_STORE_URL } from "@/lib/config";
 
 const navLinks = [
   { label: "Features",      href: "#features" },
@@ -63,8 +64,13 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <a href="#contact" className="btn-primary px-5 py-2.5 text-sm hidden md:inline-block">
-            Get Started
+          <a
+            href={APP_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary px-5 py-2.5 text-sm hidden md:inline-block"
+          >
+            Download
           </a>
 
           {/* Mobile hamburger */}
@@ -106,8 +112,14 @@ export default function Navbar() {
                 {label}
               </a>
             ))}
-            <a href="#contact" onClick={() => setMobileOpen(false)} className="btn-primary px-5 py-2.5 text-sm text-center">
-              Get Started
+            <a
+              href={APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileOpen(false)}
+              className="btn-primary px-5 py-2.5 text-sm text-center"
+            >
+              Download on the App Store
             </a>
           </div>
         </div>

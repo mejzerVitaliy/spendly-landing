@@ -33,7 +33,7 @@ const faqs = [
   },
   {
     q: "Is Spendly AI really free?",
-    a: "Yes, Spendly AI is free to download and use. The app is currently in active development and will be available on the App Store and Google Play. Join the waitlist to be notified at launch.",
+    a: "Yes, Spendly AI is free to download and use — it's live on the App Store now. An Android version for Google Play is in active development.",
   },
 ];
 

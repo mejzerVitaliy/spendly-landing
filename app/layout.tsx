@@ -9,6 +9,8 @@ const inter = Inter({
 });
 
 const BASE_URL = "https://spendly-ai.com";
+const APP_STORE_URL =
+  "https://apps.apple.com/ua/app/spendly-ai-budget-expenses/id6808135161";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -150,6 +152,8 @@ const jsonLd = [
       "Category budgets with real-time progress bars",
       "Transaction search and filtering",
       "Wallet-to-wallet transfers",
+      "Quick add action sheet — manual, Text AI, or Voice AI",
+      "Pin up to 5 favorite currencies for instant wallet creation",
       "Push notifications and financial summaries",
       "English and Russian localization",
       "Offline support with action guard",
@@ -159,9 +163,20 @@ const jsonLd = [
       price: "0",
       priceCurrency: "USD",
     },
-    screenshot: `${BASE_URL}/screenshots/screen-home.jpg`,
+    downloadUrl: APP_STORE_URL,
+    screenshot: [
+      `${BASE_URL}/screenshots/screen-home.jpg`,
+      `${BASE_URL}/screenshots/screen-add.jpg`,
+      `${BASE_URL}/screenshots/screen-create.jpg`,
+      `${BASE_URL}/screenshots/screen-insights.jpg`,
+      `${BASE_URL}/screenshots/screen-insights-ai.jpg`,
+      `${BASE_URL}/screenshots/screen-analytics.jpg`,
+      `${BASE_URL}/screenshots/screen-wallets.jpg`,
+      `${BASE_URL}/screenshots/screen-categories.jpg`,
+      `${BASE_URL}/screenshots/screen-currencies.jpg`,
+    ],
     softwareVersion: "1.0",
-    releaseNotes: "Initial launch",
+    releaseNotes: "Live now on the App Store",
     inLanguage: "en",
     availableOnDevice: ["iPhone", "Android Phone"],
   },
@@ -179,7 +194,7 @@ const jsonLd = [
       contactType: "customer support",
       availableLanguage: "English",
     },
-    sameAs: [],
+    sameAs: [APP_STORE_URL],
   },
 
   // WebSite schema
@@ -263,7 +278,7 @@ const jsonLd = [
         name: "Is Spendly AI free?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes, Spendly AI is free to download and use. The app is currently in development and will be available on the App Store and Google Play. Join the waitlist at spendly-ai.com to be notified at launch.",
+          text: "Yes, Spendly AI is free to download and use. It's live on the App Store now, with an Android version for Google Play in active development.",
         },
       },
     ],

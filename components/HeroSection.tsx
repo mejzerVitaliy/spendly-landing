@@ -1,3 +1,5 @@
+import { Apple } from "lucide-react";
+import { APP_STORE_URL } from "@/lib/config";
 import HeroVisual from "./HeroVisual";
 
 export default function HeroSection() {
@@ -82,8 +84,14 @@ export default function HeroSection() {
             </div>
 
             <div className="animate-fade-up delay-300 flex flex-wrap gap-4">
-              <a href="#contact" className="btn-primary px-8 py-4 items-center gap-3 inline-flex text-base">
-                Join the Waitlist — Free
+              <a
+                href={APP_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary px-8 py-4 items-center gap-3 inline-flex text-base"
+              >
+                <Apple size={18} color="#080808" />
+                Download on the App Store
               </a>
               <a href="#app-showcase" className="btn-ghost px-8 py-4 text-base items-center gap-3 inline-flex">
                 <span
